@@ -9,11 +9,28 @@
             values (#{memberEmail}, #{memberPassword}, #{memberName}, #{memberAge}, #{memberMobile})
     </insert>
 
+    <select id="login" parameterType="member" resultType="member">
+        select * from member_table where memberEmail=#{memberEmail}
+                                and memberPassword=#{memberPassword}
+    </select>
 
-
-
-
-    <select id="members" resultType="member">
+    <select id="findAll" resultType="member">
         select * from member_table
     </select>
+
+    <select id="findById" parameterType="Long" resultType="member">
+        select * from member_table where id=#{id}
+    </select>
+
+    <delete id="delete" parameterType="Long">
+        delete from member_table where id=#{id}
+    </delete>
+
+    <select id="findByEmail" parameterType="String" resultType="member">
+        select * from member_table where memberEmail=#{memberEmail}
+    </select>
+
+    <update id="update" parameterType="member">
+        update member_table set memberName=#{memberName}, memberAge=#{memberAge} where id=#{id}
+    </update>
 </mapper>
